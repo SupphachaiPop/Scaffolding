@@ -5,12 +5,13 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Scaffolding.Data
 {
-    public class BNNPROEntities : DbContext
+    public class DBEntities : DbContext
     {
-        public BNNPROEntities()
+
+        public DBEntities()
             : base(nameOrConnectionString: "BNNPROEntities") // value of attribute "name" in <connectionStrings/>
         {
-            Database.SetInitializer<BNNPROEntities>(null);
+            Database.SetInitializer<DBEntities>(null);
         }
 
         public DbSet<address> addresses { get; set; } // address
@@ -71,6 +72,11 @@ namespace Scaffolding.Data
         public virtual void Commit()
         {
             base.SaveChanges();
+        }
+
+        public virtual void CommitAsync()
+        {       
+            base.SaveChangesAsync();
         }
     }
 }

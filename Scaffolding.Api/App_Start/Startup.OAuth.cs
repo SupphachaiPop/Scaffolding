@@ -24,7 +24,7 @@ namespace Scaffolding.Api
             var utcHours = Convert.ToInt16(ConfigurationManager.AppSettings["jwt_utchours"]);
             var expireHours = Convert.ToInt16(ConfigurationManager.AppSettings["jwt_expirehours"]);
 
-            app.CreatePerOwinContext(() => new BNNPROEntities());
+            app.CreatePerOwinContext(() => new DBEntities());
 
             // Enabling Bearer Authentication/Authorization
             app.UseJwtBearerAuthentication(new JwtBearerAuthenticationOptions

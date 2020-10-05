@@ -8,17 +8,17 @@ using System.Linq;
 
 namespace Scaffolding.Data.Repositories
 {
-    public interface ICategoryRepository : IRepository<category>
+    public interface ICategoryRepository : IRepositoryBase<category>
     {
 
     }
 
     public class CategoryRepository : RepositoryBase<category>, ICategoryRepository
     {
-        private readonly IDbHelper _dbHelper;
+        private readonly IDBHelper _dbHelper;
 
-        public CategoryRepository(IDbFactory dbFactory, IDbHelper dbHelper)
-            : base(dbFactory) { this._dbHelper = dbHelper; }
+        public CategoryRepository(DBEntities dbContext, IDBHelper dbHelper)
+            : base(dbContext) { this._dbHelper = dbHelper; }
 
         //public IEnumerable<SELECT_CATEGORY_LIST> GetCategoryList(int? refCategoryId)
         //{

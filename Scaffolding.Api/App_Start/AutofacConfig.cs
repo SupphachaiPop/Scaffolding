@@ -12,6 +12,7 @@ using Scaffolding.Data.Repositories;
 using Scaffolding.Domain;
 using Autofac.Integration.WebApi;
 using System.Web.Http;
+using Scaffolding.Data;
 
 namespace Scaffolding.Api
 {
@@ -36,7 +37,7 @@ namespace Scaffolding.Api
                 .As<IMapper>()
                 .SingleInstance();
 
-            builder.RegisterAssemblyTypes(typeof(DbHelper).Assembly)
+            builder.RegisterAssemblyTypes(typeof(DBHelper).Assembly)
                 .Where(t => t.Name.EndsWith("Helper"))
                 .AsImplementedInterfaces()
                 .InstancePerRequest();
@@ -46,7 +47,7 @@ namespace Scaffolding.Api
                 .AsImplementedInterfaces()
                 .InstancePerRequest();
 
-            builder.RegisterAssemblyTypes(typeof(ProductRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(CategoryRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces()
                 .InstancePerRequest();

@@ -8,16 +8,16 @@ namespace Scaffolding.Data.DbInfrastructure
 {
     public interface IDbFactory : IDisposable
     {
-        BNNPROEntities Init();
+        DBEntities Init();
     }
 
     public class DbFactory : Disposable, IDbFactory
     {
-        BNNPROEntities dbContext;
+        DBEntities dbContext;
 
-        public BNNPROEntities Init()
+        public DBEntities Init()
         {
-            return dbContext ?? (dbContext = new BNNPROEntities());
+            return dbContext ?? (dbContext = new DBEntities());
         }
 
         protected override void DisposeCore()
