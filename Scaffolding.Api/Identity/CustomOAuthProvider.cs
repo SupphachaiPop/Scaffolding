@@ -32,8 +32,8 @@ namespace Scaffolding.Api.Identity
             string staticUsername = config.Setting<string>("static_username");
             string staticPassword = config.Setting<string>("static_password");
 
-            string encryptedContextPassword = util.MD5HashWithKey(input: context.Password, Encryptionkey: passwordEncryptionkey);
-            string encryptedStaticPassword = util.MD5HashWithKey(input: staticPassword, Encryptionkey: passwordEncryptionkey);
+            string encryptedContextPassword = util.MD5HashWithKey(input: context.Password, encryptionkey: passwordEncryptionkey);
+            string encryptedStaticPassword = util.MD5HashWithKey(input: staticPassword, encryptionkey: passwordEncryptionkey);
             if (context.UserName == staticUsername &&
                 encryptedContextPassword == encryptedStaticPassword)
             {

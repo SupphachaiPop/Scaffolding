@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
@@ -8,25 +9,38 @@ namespace Scaffolding.Common
     // Append Class by Teeramed Tangjirawattana 2562
     public interface IUtilityCommon
     {
+        // Base64
         string Base64Encode(string plainText);
         string Base64Decode(string base64EncodedData);
         T Base64Decode<T>(string base64EncodedData);
 
+        // MD5
         string MD5Hash(string input);
-        string EncryptData(string textData, string Encryptionkey);
-        string DecryptData(string EncryptedText, string Encryptionkey);
+
+        // Encrypt with key
+        string MD5HashWithKey(string input, string encryptionkey);
+        string EncryptData(string textData, string encryptionkey);
+        string EncryptData(object textData, string encryptionkey);
+        string DecryptData(string encryptedText, string encryptionkey);
+        T DecryptData<T>(string encryptedText, string encryptionkey);
+
+        // Encrypt with key: Recommend for data id
+        string EncryptDataUrlEncoder(string textData, string encryptionkey);
+        string EncryptDataUrlEncoder(object textData, string encryptionkey);
+        string DecryptDataUrlEncoder(string encryptedText, string encryptionkey);
+        T DecryptDataUrlEncoder<T>(string encryptedText, string encryptionkey);
     }
 
     public class UtilityCommon : IUtilityCommon
     {
-        #region [Encryption Methods]
+        #region [Base64]
         public string Base64Encode(string plainText)
         {
             string result = string.Empty;
             if (!string.IsNullOrEmpty(plainText))
             {
                 var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
-                result = System.Convert.ToBase64String(plainTextBytes);
+                result = Convert.ToBase64String(plainTextBytes);
             }
             return result;
         }
@@ -37,16 +51,16 @@ namespace Scaffolding.Common
             if (!string.IsNullOrEmpty(base64EncodedData))
             {
                 var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
-                result = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+                result = Encoding.UTF8.GetString(base64EncodedBytes);
             }
             return result;
         }
 
         public T Base64Decode<T>(string base64EncodedData)
         {
-            string result = this.Base64Decode(base64EncodedData: base64EncodedData);
             try
             {
+                string result = this.Base64Decode(base64EncodedData: base64EncodedData);
                 return (T)Convert.ChangeType(result, typeof(T));
             }
             catch
@@ -54,7 +68,9 @@ namespace Scaffolding.Common
                 return default(T);
             }
         }
+        #endregion [Base64]
 
+        #region [MD5]
         public string MD5Hash(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -72,19 +88,21 @@ namespace Scaffolding.Common
             }
             return hash.ToString();
         }
+        #endregion [MD5]
 
-        public string MD5HashWithKey(string input, string Encryptionkey)
+        #region [Encrypt with key]
+        public string MD5HashWithKey(string input, string encryptionkey)
         {
             string result = string.Empty;
             string md5HashResult = this.MD5Hash(input: input);
             if (!string.IsNullOrEmpty(md5HashResult))
             {
-                result = this.EncryptData(textData: md5HashResult, Encryptionkey: Encryptionkey);
+                result = this.EncryptData(textData: md5HashResult, encryptionkey: encryptionkey);
             }
             return result;
         }
 
-        public string EncryptData(string textData, string Encryptionkey)
+        public string EncryptData(string textData, string encryptionkey)
         {
             RijndaelManaged objrij = new RijndaelManaged();
             //set the mode for operation of the algorithm
@@ -96,7 +114,7 @@ namespace Scaffolding.Common
             //set the block size in bits for the cryptographic operation.
             objrij.BlockSize = 0x80;
             //set the symmetric key that is used for encryption & decryption.
-            byte[] passBytes = Encoding.UTF8.GetBytes(Encryptionkey);
+            byte[] passBytes = Encoding.UTF8.GetBytes(encryptionkey);
             //set the initialization vector (IV) for the symmetric algorithm
             byte[] EncryptionkeyBytes = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
             int len = passBytes.Length;
@@ -114,15 +132,25 @@ namespace Scaffolding.Common
             return Convert.ToBase64String(objtransform.TransformFinalBlock(textDataByte, 0, textDataByte.Length));
         }
 
-        public string DecryptData(string EncryptedText, string Encryptionkey)
+        public string EncryptData(object textData, string encryptionkey)
+        {
+            string result = string.Empty;
+            if (textData != null && textData?.ToString().Trim() != string.Empty)
+            {
+                result = this.EncryptData(textData: textData.ToString(), encryptionkey: encryptionkey);
+            }
+            return result;
+        }
+
+        public string DecryptData(string encryptedText, string encryptionkey)
         {
             RijndaelManaged objrij = new RijndaelManaged();
             objrij.Mode = CipherMode.CBC;
             objrij.Padding = PaddingMode.PKCS7;
             objrij.KeySize = 0x80;
             objrij.BlockSize = 0x80;
-            byte[] encryptedTextByte = Convert.FromBase64String(EncryptedText);
-            byte[] passBytes = Encoding.UTF8.GetBytes(Encryptionkey);
+            byte[] encryptedTextByte = Convert.FromBase64String(encryptedText);
+            byte[] passBytes = Encoding.UTF8.GetBytes(encryptionkey);
             byte[] EncryptionkeyBytes = new byte[0x10];
             int len = passBytes.Length;
             if (len > EncryptionkeyBytes.Length)
@@ -135,6 +163,56 @@ namespace Scaffolding.Common
             byte[] TextByte = objrij.CreateDecryptor().TransformFinalBlock(encryptedTextByte, 0, encryptedTextByte.Length);
             return Encoding.UTF8.GetString(TextByte);  //it will return readable string
         }
-        #endregion [Encryption Methods]
+
+        public T DecryptData<T>(string encryptedText, string encryptionkey)
+        {
+            try
+            {
+                string decryptedData = this.DecryptData(encryptedText: encryptedText, encryptionkey: encryptionkey);
+                return (T)Convert.ChangeType(decryptedData, typeof(T));
+            }
+            catch
+            {
+                return default(T);
+            }
+        }
+        #endregion [Encrypt with key]
+
+        #region [Encrypt with key: Recommend for data id]
+        public string EncryptDataUrlEncoder(string textData, string encryptionkey)
+        {
+            return Base64UrlEncoder.Encode(this.EncryptData(textData: textData, encryptionkey: encryptionkey));
+        }
+
+        public string EncryptDataUrlEncoder(object textData, string encryptionkey)
+        {
+            return Base64UrlEncoder.Encode(this.EncryptData(textData: textData, encryptionkey: encryptionkey));
+        }
+
+        public string DecryptDataUrlEncoder(string encryptedText, string encryptionkey)
+        {
+            return this.DecryptData(encryptedText: Base64UrlEncoder.Decode(encryptedText), encryptionkey: encryptionkey);
+        }
+
+        public T DecryptDataUrlEncoder<T>(string encryptedText, string encryptionkey)
+        {
+            try
+            {
+                string decryptedData = this.DecryptData(encryptedText: Base64UrlEncoder.Decode(encryptedText), encryptionkey: encryptionkey);
+                if (Nullable.GetUnderlyingType(typeof(T)) != null)
+                {
+                    return (T)Convert.ChangeType(decryptedData, Nullable.GetUnderlyingType(typeof(T)));
+                }
+                else
+                {
+                    return (T)Convert.ChangeType(decryptedData, typeof(T));
+                }
+            }
+            catch
+            {
+                return default(T);
+            }
+        }
+        #endregion [Encrypt with key: Recommend for data id]
     }
 }

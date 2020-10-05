@@ -11,11 +11,6 @@ namespace Scaffolding.Application
 {
     public partial interface IDataApplication
     {
-       
     }
 
-    public partial class DataApplication : IDataApplication
-    {
-        
-    }
 }
