@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AD0D4268-9E43-4FAF-B2FB-DD3B25E7DB23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>B2H.Data</RootNamespace>
+    <AssemblyName>B2H.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.2.2.7\lib\net45\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.2.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.2.2.7\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql.EntityFramework, Version=2.2.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.EntityFramework.2.2.7\lib\net45\Npgsql.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BNNPROEntities.cs" />
+    <Compile Include="DbInfrastructure\DbFactory.cs" />
+    <Compile Include="DbInfrastructure\DbHelper.cs" />
+    <Compile Include="DbInfrastructure\Disposable.cs" />
+    <Compile Include="DbInfrastructure\EFUnitOfWork.cs" />
+    <Compile Include="DbInfrastructure\RepositoryBase.cs" />
+    <Compile Include="EFConfiguration\addressConfiguration.cs" />
+    <Compile Include="EFConfiguration\bankConfiguration.cs" />
+    <Compile Include="EFConfiguration\bank_accountConfiguration.cs" />
+    <Compile Include="EFConfiguration\brandConfiguration.cs" />
+    <Compile Include="EFConfiguration\cartConfiguration.cs" />
+    <Compile Include="EFConfiguration\categoryConfiguration.cs" />
+    <Compile Include="EFConfiguration\category_specificationConfiguration.cs" />
+    <Compile Include="EFConfiguration\customerConfiguration.cs" />
+    <Compile Include="EFConfiguration\districtConfiguration.cs" />
+    <Compile Include="EFConfiguration\productConfiguration.cs" />
+    <Compile Include="EFConfiguration\product_imageConfiguration.cs" />
+    <Compile Include="EFConfiguration\product_specificationConfiguration.cs" />
+    <Compile Include="EFConfiguration\product_stockConfiguration.cs" />
+    <Compile Include="EFConfiguration\product_stock_imageConfiguration.cs" />
+    <Compile Include="EFConfiguration\promotion_imageConfiguration.cs" />
+    <Compile Include="EFConfiguration\provinceConfiguration.cs" />
+    <Compile Include="EFConfiguration\receipt_referenceConfiguration.cs" />
+    <Compile Include="EFConfiguration\refund_referenceConfiguration.cs" />
+    <Compile Include="EFConfiguration\sale_orderConfiguration.cs" />
+    <Compile Include="EFConfiguration\sale_order_itemConfiguration.cs" />
+    <Compile Include="EFConfiguration\specificationConfiguration.cs" />
+    <Compile Include="EFConfiguration\sub_districtConfiguration.cs" />
+    <Compile Include="EFConfiguration\sub_specificationConfiguration.cs" />
+    <Compile Include="EFConfiguration\symptomConfiguration.cs" />
+    <Compile Include="EFConfiguration\userConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Data\ProductRepository.cs" />
+    <Compile Include="Repositories\Data\Promotion_imageRepository.cs" />
+    <Compile Include="Repositories\Data\CategoryRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Scaffolding.Models\Scaffolding.Models.csproj">
+      <Project>{4955e8b2-1b0e-44d4-954e-c5d032d94940}</Project>
+      <Name>Scaffolding.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
