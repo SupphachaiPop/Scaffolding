@@ -150,10 +150,9 @@ namespace Scaffolding.Api
                 errMessage = ex.Message;
             }
 
-            return Task<HttpResponseMessage>.Factory.StartNew(() => request.CreateResponse<VMRESPONSE_STATUS>(statusCode, new VMRESPONSE_STATUS()
+            return Task<HttpResponseMessage>.Factory.StartNew(() => request.CreateResponse<VMBASE_RESPONSE_STATUS>(statusCode, new VMBASE_RESPONSE_STATUS()
             {
                 IS_SUCCESS = false,
-                CODE = (int)statusCode,
                 MESSAGE = errMessage
             }));
         }

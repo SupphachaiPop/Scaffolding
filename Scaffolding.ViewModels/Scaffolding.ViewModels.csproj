@@ -43,29 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\VMJQDT_SERVERSIDE_PARAMS.cs" />
-    <Compile Include="Common\VMDATATABLE_RESPONSE.cs" />
-    <Compile Include="Common\VMDROPDOWNLIST_ITEMS.cs" />
-    <Compile Include="Const\VMCONST.Api.cs" />
-    <Compile Include="HttpRequest\VMREQUEST_PARAM.cs" />
-    <Compile Include="HttpResponse\VMRESPONSE_STATUS.cs" />
+    <Compile Include="User\Param\VMPARAM_LOGIN.cs" />
+    <Compile Include="User\Result\VMRESULT_LOGIN.cs" />
+    <Compile Include="_BaseConst\VMJQDT_SERVERSIDE_PARAMS.cs" />
+    <Compile Include="_BaseConst\VMBASE_DATATABLE_RESPONSE.cs" />
+    <Compile Include="_BaseDropDown\VMBASE_DDL.cs" />
+    <Compile Include="_BaseConst\VMBASE_CONST.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_BaseResponse\VMBASE_RES.cs" />
+    <Compile Include="_BaseResponse\VMBASE_RES_LIST.cs" />
+    <Compile Include="_BaseResponse\VMDATATABLE_RES.cs" />
+    <Compile Include="_BaseResponse\VMBASE_RESPONSE_STATUS.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Authorize\Param\" />
     <Folder Include="Authorize\Result\" />
-    <Folder Include="Cart\Param\" />
-    <Folder Include="Cart\Result\" />
-    <Folder Include="Category\Param\" />
-    <Folder Include="Category\Result\" />
-    <Folder Include="Menu\Param\" />
-    <Folder Include="Menu\Result\" />
-    <Folder Include="Product\Param\" />
-    <Folder Include="Product\Result\" />
-    <Folder Include="Promotion\Param\" />
-    <Folder Include="Promotion\Result\" />
-    <Folder Include="User\Param\" />
-    <Folder Include="User\Result\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -74,9 +74,9 @@
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="AutoMapper\ModelToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToModelMappingProfile.cs" />
-    <Compile Include="DataApplication\Interfaces\IDataApplication.Authorize.cs" />
-    <Compile Include="DataApplication\_Implement\DataApplication.cs" />
-    <Compile Include="DataApplication\Services\DataApplication.Authorize.cs" />
+    <Compile Include="Data\Interfaces\IDataApplication.Authorize.cs" />
+    <Compile Include="Data\_Implement\DataApplication.cs" />
+    <Compile Include="Data\Services\DataApplication.Authorize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

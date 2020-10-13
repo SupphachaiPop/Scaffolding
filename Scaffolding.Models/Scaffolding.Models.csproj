@@ -32,6 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -43,34 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tables\address.cs" />
-    <Compile Include="Tables\bank.cs" />
-    <Compile Include="Tables\bank_account.cs" />
-    <Compile Include="Tables\brand.cs" />
-    <Compile Include="Tables\cart.cs" />
-    <Compile Include="Tables\category.cs" />
-    <Compile Include="Tables\category_specification.cs" />
-    <Compile Include="Tables\customer.cs" />
-    <Compile Include="Tables\district.cs" />
-    <Compile Include="Tables\product.cs" />
-    <Compile Include="Tables\product_image.cs" />
-    <Compile Include="Tables\product_specification.cs" />
-    <Compile Include="Tables\product_stock.cs" />
-    <Compile Include="Tables\product_stock_image.cs" />
-    <Compile Include="Tables\promotion_image.cs" />
-    <Compile Include="Tables\province.cs" />
-    <Compile Include="Tables\receipt_reference.cs" />
-    <Compile Include="Tables\refund_reference.cs" />
-    <Compile Include="Tables\sale_order.cs" />
-    <Compile Include="Tables\sale_order_item.cs" />
-    <Compile Include="Tables\specification.cs" />
-    <Compile Include="Tables\sub_district.cs" />
-    <Compile Include="Tables\sub_specification.cs" />
-    <Compile Include="Tables\symptom.cs" />
+    <Compile Include="Tables\menu.cs" />
+    <Compile Include="Tables\role.cs" />
+    <Compile Include="Tables\role_menu.cs" />
     <Compile Include="Tables\user.cs" />
+    <Compile Include="_BaseConst\SQLSERVER_CONST.ColumnType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="StoredProcedure\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

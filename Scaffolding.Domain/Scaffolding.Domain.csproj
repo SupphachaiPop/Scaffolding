@@ -57,11 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DataDomain.Product.cs" />
-    <Compile Include="Data\DataDomain.Promotion.cs" />
-    <Compile Include="Data\DataDomain.cs" />
-    <Compile Include="Data\DataDomain.Category.cs" />
+    <Compile Include="Data\_Implement\DataDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\Interfaces\IUserDomain.Add.cs" />
+    <Compile Include="User\Interfaces\IUserDomain.Get.cs" />
+    <Compile Include="User\Interfaces\IUserDomain.Search.cs" />
+    <Compile Include="User\Interfaces\IUserDomain.Update.cs" />
+    <Compile Include="User\Services\UserDomain.Add.cs" />
+    <Compile Include="User\Services\UserDomain.Get.cs" />
+    <Compile Include="User\Services\UserDomain.Search.cs" />
+    <Compile Include="User\Services\UserDomain.Update.cs" />
+    <Compile Include="User\_Implement\UserDomain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -76,6 +82,10 @@
       <Project>{4955e8b2-1b0e-44d4-954e-c5d032d94940}</Project>
       <Name>Scaffolding.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Interface\" />
+    <Folder Include="Data\Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

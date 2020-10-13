@@ -64,35 +64,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBEntities.cs" />
-    <Compile Include="DbInfrastructure\DbFactory.cs" />
-    <Compile Include="DbInfrastructure\Disposable.cs" />
-    <Compile Include="EFConfiguration\addressConfiguration.cs" />
-    <Compile Include="EFConfiguration\bankConfiguration.cs" />
-    <Compile Include="EFConfiguration\bank_accountConfiguration.cs" />
-    <Compile Include="EFConfiguration\brandConfiguration.cs" />
-    <Compile Include="EFConfiguration\cartConfiguration.cs" />
-    <Compile Include="EFConfiguration\categoryConfiguration.cs" />
-    <Compile Include="EFConfiguration\category_specificationConfiguration.cs" />
-    <Compile Include="EFConfiguration\customerConfiguration.cs" />
-    <Compile Include="EFConfiguration\districtConfiguration.cs" />
-    <Compile Include="EFConfiguration\productConfiguration.cs" />
-    <Compile Include="EFConfiguration\product_imageConfiguration.cs" />
-    <Compile Include="EFConfiguration\product_specificationConfiguration.cs" />
-    <Compile Include="EFConfiguration\product_stockConfiguration.cs" />
-    <Compile Include="EFConfiguration\product_stock_imageConfiguration.cs" />
-    <Compile Include="EFConfiguration\promotion_imageConfiguration.cs" />
-    <Compile Include="EFConfiguration\provinceConfiguration.cs" />
-    <Compile Include="EFConfiguration\receipt_referenceConfiguration.cs" />
-    <Compile Include="EFConfiguration\refund_referenceConfiguration.cs" />
-    <Compile Include="EFConfiguration\sale_orderConfiguration.cs" />
-    <Compile Include="EFConfiguration\sale_order_itemConfiguration.cs" />
-    <Compile Include="EFConfiguration\specificationConfiguration.cs" />
-    <Compile Include="EFConfiguration\sub_districtConfiguration.cs" />
-    <Compile Include="EFConfiguration\sub_specificationConfiguration.cs" />
-    <Compile Include="EFConfiguration\symptomConfiguration.cs" />
+    <Compile Include="EFConfiguration\menuConfiguration.cs" />
+    <Compile Include="EFConfiguration\roleConfiguration.cs" />
+    <Compile Include="EFConfiguration\role_menuConfiguration.cs" />
     <Compile Include="EFConfiguration\userConfiguration.cs" />
+    <Compile Include="Repositories\menuRepository.cs" />
+    <Compile Include="Repositories\roleRepository.cs" />
+    <Compile Include="Repositories\role_menuRepository.cs" />
+    <Compile Include="Repositories\userRepository.cs" />
+    <Compile Include="_BaseData\DbFactory.cs" />
+    <Compile Include="_BaseData\Disposable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Data\CategoryRepository.cs" />
     <Compile Include="_BaseData\_EFUnitOfWork\Interfaces\IEFUnitOfWork.cs" />
     <Compile Include="_BaseData\_EFUnitOfWork\Services\EFUnitOfWork.cs" />
     <Compile Include="_BaseData\_Helper\Interfaces\IDBHelper.cs" />
@@ -110,5 +92,6 @@
       <Name>Scaffolding.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

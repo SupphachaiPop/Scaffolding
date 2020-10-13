@@ -7,7 +7,6 @@ using Hangfire;
 using Scaffolding.Common;
 using Scaffolding.Application;
 using Scaffolding.Application.AutoMapper;
-using Scaffolding.Data.DbInfrastructure;
 using Scaffolding.Data.Repositories;
 using Scaffolding.Domain;
 using Autofac.Integration.WebApi;
@@ -37,17 +36,12 @@ namespace Scaffolding.Api
                 .As<IMapper>()
                 .SingleInstance();
 
-            builder.RegisterAssemblyTypes(typeof(DBHelper).Assembly)
-                .Where(t => t.Name.EndsWith("Helper"))
-                .AsImplementedInterfaces()
-                .InstancePerRequest();
-
             builder.RegisterAssemblyTypes(typeof(UtilityCommon).Assembly)
                 .Where(t => t.Name.EndsWith("Common"))
                 .AsImplementedInterfaces()
                 .InstancePerRequest();
 
-            builder.RegisterAssemblyTypes(typeof(CategoryRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(userRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces()
                 .InstancePerRequest();
